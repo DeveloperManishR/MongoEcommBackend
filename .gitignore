@@ -1,0 +1,64 @@
+# === General ===
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.env
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.env
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.so
+.env
+.venv/
+venv/
+build/
+develop-eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === macOS ===
+.DS_Store
+
+# === Windows ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Visual Studio Code ===
+.vscode/
+
+# === JetBrains IDEs ===
+.idea/
+
+# === Logs ===
+logs/
+*.log
+
+# === Coverage ===
+.coverage
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# === Git ===
+.git/
+*.orig
+
+# === Other ===
+*.bak
+*.tmp
+*.old
