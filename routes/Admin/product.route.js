@@ -1,12 +1,14 @@
 import express from "express"
-import { createProduct, getAllProducts, updateProduct } from "../../controllers/Admin/product.controller.js"
+import { createProduct, getAllProducts, getProductDetail, updateProduct } from "../../controllers/Admin/product.controller.js"
 
 const app=express()
 
 
 
 app.get('/',getAllProducts)
-app.put('/',updateProduct)
+app.get('/:id',getProductDetail)
+
+app.put('/:id',updateProduct)
 app.post('/',createProduct)
 
 

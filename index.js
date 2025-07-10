@@ -2,12 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import { ConnectDB } from "./config/config.js";
 import apiRoutes from "./routes/index.js"
+import cors from "cors"
 import cookieParser from "cookie-parser";
 dotenv.config();
+
 ConnectDB()
 
 
 const app=express()
+
+app.use(cors())
 app.use(express.json()) //allows you to parse Body request
 app.use(cookieParser());
 

@@ -11,11 +11,11 @@ import { compairPassword, hashingPassword } from "../../helpers/authHelper.js";
 
 const generateTokens = (userId) => {
   const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: process.env.EXPIRE_ACCESS_TOKEN_TIME,
+    expiresIn: parseInt(process.env.EXPIRE_ACCESS_TOKEN_TIME),
   });
 
   const refreshToken = jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: process.env.EXPIRE_REFRESH_TOKEN_TIME,
+    expiresIn: parseInt(process.env.EXPIRE_REFRESH_TOKEN_TIME),
   });
   return { accessToken, refreshToken };
 };
@@ -125,35 +125,5 @@ export const logout = async (req, res) => {
 };
 
 export const refreshToken = async (req, res) => {
-  try {
-    const refreshToken = req.cookies.refreshToken;
 
-    if (!refreshToken) {
-      return ErrorResponse(res, "No refresh token provided");
-    }
-
-    const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-    const storedToken = await redis.get(`refresh_token:${decoded.userId}`);
-
-    if (storedToken !== refreshToken) {
-      return ErrorResponse(res, "Invalid refresh token");
-    }
-
-    const accessToken = jwt.sign(
-      { userId: decoded.userId },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: process.env.process.env.EXPIRE_ACCESS_TOKEN_TIME }
-    );
-
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: process.env.EXPIRE_ACCESS_TOKEN_TIME * 1000,
-    });
-
-    return successResponse(res, "Token refreshed successfully");
-  } catch (error) {
-    return ErrorResponse(res, error.message);
-  }
 };
