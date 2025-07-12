@@ -4,7 +4,7 @@ import { profileDetails } from "../../controllers/User/auth.controller.js"
 
 const app=express()
 
-app.use('/profile',profileDetails)
+app.get('/profile',profileDetails)
 
 
 export default app

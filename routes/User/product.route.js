@@ -4,7 +4,7 @@ import { getAllProducts } from "../../controllers/User/product.controller.js"
 
 const app=express()
 
-app.use('/',getAllProducts)
+app.get('/',getAllProducts)
 // app.use('/')
 
 
