@@ -11,7 +11,10 @@ ConnectDB()
 
 const app=express()
 
-app.use(cors())
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+}))
 app.use(express.json()) //allows you to parse Body request
 app.use(cookieParser());
 

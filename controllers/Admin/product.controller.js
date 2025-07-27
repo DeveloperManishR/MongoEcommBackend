@@ -86,6 +86,10 @@ export const getAllProducts = async (req, res) => {
     page: parseInt (page),
     limit: parseInt (limit),
     sort: {createdAt: -1},
+   populate: {
+    path: 'category',
+    select: 'name'  // This selects only the 'name' field from the populated category
+  }
   };
   try {
     const products = await Product.paginate (query, options);

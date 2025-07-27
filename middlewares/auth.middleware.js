@@ -6,6 +6,8 @@ export const authenticateAdmin = async (req, res, next) => {
   try {
     const accessToken = req.cookies?.accessToken;
 
+    console.log("rqdada",req.cookies)
+
     if (!accessToken) {
       return ErrorResponse(res, "No access token provided");
       //return res.status(401).json({ message: "No access token provided" });
